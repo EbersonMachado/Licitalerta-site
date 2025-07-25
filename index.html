@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,17 +22,14 @@
     }
   </style>
 
-  <!-- Clerk SDK -->
-  <script async crossorigin src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
+  <!-- Clerk SDK (corrigido) -->
   <script>
-    window.Clerk ||= {};
-    window.Clerk.load = () => {
-      Clerk.load({
-        frontendApi: "beloved-raptor-9.clerk.accounts.dev",
-        publishableKey: "pk_test_YmVsb3ZlZC1yYXB0b3ItOS5jbGVyay5hY2NvdW50cy5kZXYk"
-      });
-    };
+    window.ClerkFrontendApi = "beloved-raptor-9.clerk.accounts.dev";
   </script>
+  <script async crossorigin src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" onload="
+    window.Clerk.mountSignUpButton('#clerk-sign-up-button');
+    window.Clerk.mountSignInButton('#clerk-sign-in-button');
+  "></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -140,13 +136,13 @@
       <h2 class="text-center mb-4">Crie sua conta gratuita</h2>
       <div class="row justify-content-center">
         <div class="col-md-6 text-center">
-          <clerk-sign-up-button mode="modal">
+          <div id="clerk-sign-up-button">
             <button class="btn btn-primary">Criar Conta</button>
-          </clerk-sign-up-button>
+          </div>
           <br/>
-          <clerk-sign-in-button mode="modal">
+          <div id="clerk-sign-in-button">
             <button class="btn btn-outline-primary mt-2">Entrar</button>
-          </clerk-sign-in-button>
+          </div>
         </div>
       </div>
     </div>
@@ -158,9 +154,6 @@
     </div>
   </footer>
 
-  <script>
-    window.Clerk.load();
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
